@@ -18,4 +18,6 @@ Launch:
 
 start.bat
 
+Bot will send all command info in chat with yourself
+
 Good luck ;)
