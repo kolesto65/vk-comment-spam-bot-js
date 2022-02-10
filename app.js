@@ -11,7 +11,7 @@ var position = 1;
 var { updates } = vk;
                                                                     
 updates.on('message', async (message) => {                                           
-if(message.peerId !== settings.yourId) return console.log('Не тот чат!');                                                             
+if(message.peerId !== settings.yourId) return                                                          
 const command = commands.find(x=> x[0].test(message.text));         
 if(!command) return;                                                 
 message.args = message.text.match(command[0]);                     
