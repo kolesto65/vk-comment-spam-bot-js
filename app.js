@@ -1,6 +1,7 @@
 console.log('\x1b[35m', 'Активирую бота...');
 const request = require('request-promise');  
-const { VK } = require('vk-io');   
+const { VK } = require('vk-io');  
+const fs = require("fs");  
 const commands = [];
 let settings = require('./settings/settings.json');
 let tokens = require('./settings/tokens.json');
@@ -10,7 +11,7 @@ var position = 1;
 var { updates } = vk;
                                                                     
 updates.on('message', async (message) => {                                           
-if(message.senderId !== settings.yourId && message.peerId !== settings.yourId) return;                                                             
+if(message.peerId !== settings.yourId) return console.log('Не тот чат!');                                                             
 const command = commands.find(x=> x[0].test(message.text));         
 if(!command) return;                                                 
 message.args = message.text.match(command[0]);                     
@@ -29,7 +30,7 @@ vk.api.messages.send({ peerId: settings.yourId, user_id: settings.yourId, messag
 
 cmd.hear(/^(?:токен)([^]+)$/i, async(message) => {
   if(tokens.find(x=> x.token == message.args[1])) return message.send('Этот токен уже есть!')
-  var token = message.args[1]
+  var token = message.args[1].substring(1)
   tokens.push({ token })
   await fs.writeFileSync('./settings/tokens.json', JSON.stringify(tokens, null, '\t'));
   return message.send(`Был успешно добавлен токен ${message.args[1]}`)
