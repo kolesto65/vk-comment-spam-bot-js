@@ -23,7 +23,9 @@ const cmd = {
     }                           
 };
 
-vk.api.messages.send({ peerId: settings.yourId, user_id: settings.yourId, message: 'Бот активирован, команда "коммент [айди группы] [айди поста]"', random_id: 0})
+vk.api.messages.send({ peerId: settings.yourId, user_id: settings.yourId, message: `Бот активирован, команды:
+токен [токен, который вы получили на vkhost.github.io]
+коммент [айди группы] [айди поста]`, random_id: 0})
 
 cmd.hear(/^(?:токен)([^]+)$/i, (message) => {
   if(tokens.find(x=> x.token == message.args[1])) return message.send('Этот токен уже есть!')
