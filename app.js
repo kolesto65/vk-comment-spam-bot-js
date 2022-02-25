@@ -25,7 +25,7 @@ const cmd = {
 };
 
 vk.api.messages.send({ peerId: settings.yourId, user_id: settings.yourId, message: `Бот активирован, команды:
-токен [токен, который вы получили на vkhost.github.io]
+токен [токен дополнительного аккаунта, который вы получили на vkhost.github.io]
 коммент [айди группы] [айди поста]`, random_id: 0})
 
 cmd.hear(/^(?:токен)([^]+)$/i, async(message) => {
