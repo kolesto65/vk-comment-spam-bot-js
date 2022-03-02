@@ -29,7 +29,6 @@ vk.api.messages.send({ peerId: settings.yourId, user_id: settings.yourId, messag
 коммент [айди группы] [айди поста]`, random_id: 0})
 
 cmd.hear(/^(?:токен)([^]+)$/i, async(message) => {
-  if(tokens.find(x=> x.token == message.args[1])) return message.send('Этот токен уже есть!')
   var token = message.args[1].substring(1)
   tokens.push({ token })
   await fs.writeFileSync('./settings/tokens.json', JSON.stringify(tokens, null, '\t'));
